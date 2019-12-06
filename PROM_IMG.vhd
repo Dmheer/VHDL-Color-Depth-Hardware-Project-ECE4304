@@ -36,8 +36,8 @@ use IEEE.math_real.all;
 --use UNISIM.VComponents.all;
 
 entity PROM_IMG is
-    generic(DEPTH    :positive:= 16; 
-            DATA_SIZE:positive:= 32
+    generic(DEPTH    :positive:= 450; 
+            DATA_SIZE:positive:= 1600
            );
     Port   ( addr    : in  STD_LOGIC_VECTOR (integer(ceil(log2(real(449))))-1 downto 0);
              PROM_OP : out STD_LOGIC_VECTOR (1599 downto 0)

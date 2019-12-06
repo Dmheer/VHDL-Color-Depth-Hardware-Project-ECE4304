@@ -45,10 +45,10 @@ entity vga_initials is
            vc       : in  STD_LOGIC_VECTOR (9  downto 0);
            M        : in  STD_LOGIC_VECTOR (1599 downto 0);
            SW       : in  STD_LOGIC_VECTOR (7  downto 0);
-           rom_addr4: out STD_LOGIC_VECTOR (3  downto 0);
-           red      : out STD_LOGIC_VECTOR (2  downto 0); 
-           green    : out STD_LOGIC_VECTOR (2  downto 0); 
-           blue     : out STD_LOGIC_VECTOR (2  downto 0)
+           rom_addr4: out STD_LOGIC_VECTOR (8  downto 0);
+           red      : out STD_LOGIC_VECTOR (3  downto 0); 
+           green    : out STD_LOGIC_VECTOR (3  downto 0); 
+           blue     : out STD_LOGIC_VECTOR (3  downto 0)
          );
 end vga_initials;
 
@@ -64,7 +64,7 @@ C1 <= ("00" & sw(3 downto 0) & "00001");
 R1 <= ("00" & sw(7 downto 4) & "00001");
 rom_addr  <= vc - vbp- R1; 
 rom_pix   <= hc - hbp- C1;
-rom_addr4 <= rom_addr(3 downto 0); 
+rom_addr4 <= rom_addr(8 downto 0); 
 
 -- Enable sprite video out when within the sprite region 
 

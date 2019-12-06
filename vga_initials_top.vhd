@@ -48,9 +48,9 @@ entity vga_initials_top is
            sw   : in STD_LOGIC_VECTOR (7 downto 0);
            hsync: out STD_LOGIC;
            vsync: out STD_LOGIC; 
-           red  : out STD_LOGIC_VECTOR (2 downto 0); 
-           green: out STD_LOGIC_VECTOR (2 downto 0);
-           blue : out STD_LOGIC_VECTOR (2 downto 0)   
+           red  : out STD_LOGIC_VECTOR (3 downto 0); 
+           green: out STD_LOGIC_VECTOR (3 downto 0);
+           blue : out STD_LOGIC_VECTOR (3 downto 0)   
          );
 end vga_initials_top;
 
@@ -87,11 +87,11 @@ component clk_wiz_0
 end component; 
 
 component PROM_IMG
-    generic(DEPTH    :positive:= 16; 
-            DATA_SIZE:positive:= 32
+    generic(DEPTH    :positive:= 450; 
+            DATA_SIZE:positive:= 1600
            );
-    Port   ( addr    : in  STD_LOGIC_VECTOR (integer(ceil(log2(real(DEPTH))))-1 downto 0);
-             PROM_OP : out STD_LOGIC_VECTOR (DATA_SIZE-1 downto 0)
+    Port   ( addr    : in  STD_LOGIC_VECTOR (integer(ceil(log2(real(449))))-1 downto 0);
+             PROM_OP : out STD_LOGIC_VECTOR (1599 downto 0)
            );
 end component;
 
@@ -104,12 +104,12 @@ component vga_initials
            vidon    : in  STD_LOGIC;
            hc       : in  STD_LOGIC_VECTOR (9  downto 0);
            vc       : in  STD_LOGIC_VECTOR (9  downto 0);
-           M        : in  STD_LOGIC_VECTOR (31 downto 0);
+           M        : in  STD_LOGIC_VECTOR (1599 downto 0);
            SW       : in  STD_LOGIC_VECTOR (7  downto 0);
-           rom_addr4: out STD_LOGIC_VECTOR (3  downto 0);
-           red      : out STD_LOGIC_VECTOR (2  downto 0); 
-           green    : out STD_LOGIC_VECTOR (2  downto 0); 
-           blue     : out STD_LOGIC_VECTOR (2  downto 0)
+           rom_addr4: out STD_LOGIC_VECTOR (8  downto 0);
+           red      : out STD_LOGIC_VECTOR (3  downto 0); 
+           green    : out STD_LOGIC_VECTOR (3  downto 0); 
+           blue     : out STD_LOGIC_VECTOR (3  downto 0)
          );
 end component;
 
@@ -120,8 +120,8 @@ signal steady_clk25MHz:std_logic;
 signal hc, vc:std_logic_vector(9 downto 0); 
 signal video_on :std_logic; 
 
-signal IMG:std_logic_vector(31 downto 0); 
-signal rom_addr4:std_logic_vector(3 downto 0); 
+signal IMG:std_logic_vector(1599 downto 0); 
+signal rom_addr4:std_logic_vector(8 downto 0); 
 
 begin
 CLK_GEN_PLL: clk_wiz_0 port map ( 
@@ -175,8 +175,8 @@ INIT: vga_initials
          );
          
 PROM: PROM_IMG generic map (
-                            DEPTH     => 16 ,
-                            DATA_SIZE => 32
+                            DEPTH     => 450 ,
+                            DATA_SIZE => 1600
                             )
                port map (
                           addr    => rom_addr4,
