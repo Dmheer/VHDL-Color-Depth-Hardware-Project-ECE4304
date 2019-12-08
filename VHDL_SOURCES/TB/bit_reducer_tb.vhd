@@ -78,7 +78,7 @@ SIM_GEN: process
     variable v_oline: line;
 begin
 
-    file_open(file_VECTORS, "E:\FinalProject\input.txt", read_mode);
+    file_open(file_VECTORS, "C:\FinalProject\input.txt", read_mode);
     
     while not endfile(file_VECTORS) loop
         wait for clk_period;
