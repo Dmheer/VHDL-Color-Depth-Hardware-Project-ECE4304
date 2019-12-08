@@ -54,6 +54,9 @@ end component;
 
 file file_VECTORS: text;
 file file_RESULTS: text;
+file file_RED: text;
+file file_GREEN: text;
+file file_BLUE: text;
 
 signal input_tb: STD_LOGIC_VECTOR(INPUT_SIZE-1 downto 0);
 signal output_tb: STD_LOGIC_VECTOR(OUTPUT_SIZE-1 downto 0);
@@ -78,6 +81,9 @@ SIM_GEN: process
     variable v_iline : line;
     variable v_dinput: std_logic_vector (INPUT_SIZE-1 downto 0);
     variable v_oline: line;
+    variable v_rline: line;
+    variable v_gline: line;
+    variable v_bline: line;
     variable v_dcci : std_logic;
     variable v_SPACE: character;
     variable v_COMMA: character:=',';    
@@ -85,6 +91,9 @@ begin
 
     file_open(file_VECTORS, "D:\Vivado Projects\quantize_test\quantize_test.srcs\sim_1\new\input_vectors.txt", read_mode);
     file_open(file_RESULTS, "D:\Vivado Projects\quantize_test\quantize_test.srcs\sim_1\new\output_results.txt", write_mode);
+    file_open(file_RED, "D:\Vivado Projects\quantize_test\quantize_test.srcs\sim_1\new\output_red.txt", write_mode);
+    file_open(file_GREEN, "D:\Vivado Projects\quantize_test\quantize_test.srcs\sim_1\new\output_green.txt", write_mode);
+    file_open(file_BLUE, "D:\Vivado Projects\quantize_test\quantize_test.srcs\sim_1\new\output_blue.txt", write_mode);
     
     while not endfile(file_VECTORS) loop
         wait for clk_period;
@@ -97,15 +106,30 @@ begin
         if (count = 3) then
             write(v_OLINE, output_tb);
             writeline(file_RESULTS, v_OLINE);
+            write(v_RLINE, output_tb(OUTPUT_SIZE-1 downto OUTPUT_SIZE-3));
+            writeline(file_RED, v_RLINE);
+            write(v_GLINE, output_tb(OUTPUT_SIZE-4 downto OUTPUT_SIZE-6));
+            writeline(file_GREEN, v_GLINE);
+            write(v_BLINE, output_tb(OUTPUT_SIZE-7 downto 0));
+            writeline(file_BLUE, v_BLINE);                        
             count <= 0;
         else
             count <= count + 1;
             write(v_OLINE, output_tb);
-            write(v_OLINE, v_COMMA);            
+            write(v_OLINE, v_COMMA);
+            write(v_RLINE, output_tb(OUTPUT_SIZE-1 downto OUTPUT_SIZE-3));
+            write(v_RLINE, v_COMMA);
+            write(v_GLINE, output_tb(OUTPUT_SIZE-4 downto OUTPUT_SIZE-6));
+            write(v_GLINE, v_COMMA);
+            write(v_BLINE, output_tb(OUTPUT_SIZE-7 downto 0));
+            write(v_BLINE, v_COMMA);                                  
         end if;
         
     end loop;
-        writeline(file_RESULTS, v_OLINE);        
+        writeline(file_RESULTS, v_OLINE);
+        writeline(file_RED, v_RLINE);
+        writeline(file_GREEN, v_GLINE);
+        writeline(file_BLUE, v_BLINE);        
         file_close(file_VECTORS);
     wait;
 end process;
