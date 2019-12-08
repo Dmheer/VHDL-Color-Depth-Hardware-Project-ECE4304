@@ -68,9 +68,9 @@ begin
                    else
                     colPointer <= colPointer + 1;
                     end if;
-                end if;
           else
             b <= (others => '0');
+                end if;
         end if;
        output <= b;
 end process;
