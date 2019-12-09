@@ -129,7 +129,7 @@ begin
         s_o_b_tb <= output_tb(OUTPUT_SIZE-9 downto OUTPUT_SIZE-12); 
         wait for clk_period;
         
-        if (count = 532) then
+        if (count = 540) then
             write(v_OLINE, output_tb);
             writeline(file_RESULTS, v_OLINE);
             write(v_RLINE, s_o_r_tb);

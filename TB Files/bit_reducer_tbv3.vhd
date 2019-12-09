@@ -32,15 +32,15 @@ use IEEE.STD_LOGIC_TEXTIO.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity bit_reducer_tb is
+entity bit_reducer_tbv3 is
     generic(
         INPUT_SIZE: positive:= 24;
         OUTPUT_SIZE: positive:=12
     );
 --  Port ( );
-end bit_reducer_tb;
+end bit_reducer_tbv3;
 
-architecture Behavioral of bit_reducer_tb is
+architecture Behavioral of bit_reducer_tbv3 is
 
 component bit_reducer
     generic (
