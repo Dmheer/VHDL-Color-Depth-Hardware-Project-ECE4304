@@ -1,9 +1,9 @@
-close all;                                    %close all figures
-Row_Count = 509;                                %picture height
-Coloumn_count = 591;                            %picture width
-original_image= 'Armor_King_T7.jpg';              %orignal image
-single_recompacted_image = 'armorking.jpg';     %new image
-montage_image = 'akmontage.jpg';           %them put together
+close all;                                      %close all figures
+Row_Count = 300;                                %picture height
+Coloumn_count = 580;                            %picture width
+original_image= 'color.jpg';              %orignal image
+single_recompacted_image = 'colorr.jpg';     %new image
+montage_image = 'colormontage.jpg';           %them put together
 r_txt = 'output_red.txt';                       %red channel 
 g_txt = 'output_green.txt';                     %green channel 
 b_txt = 'output_blue.txt';                      %blue channel 
